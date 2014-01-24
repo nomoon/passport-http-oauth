@@ -1,7 +1,7 @@
 var vows = require('vows');
 var assert = require('assert');
 var util = require('util');
-var MultiHash = require('passport-http-oauth/multihash');
+var MultiHash = require('passport-http-oauth-1leg/multihash');
 
 
 vows.describe('MultiHash').addBatch({
@@ -10,7 +10,7 @@ vows.describe('MultiHash').addBatch({
     topic: function() {
       return new MultiHash();
     },
-    
+
     'should report length of zero' : function(hash) {
       assert.equal(hash.length, 0);
     },
@@ -27,7 +27,7 @@ vows.describe('MultiHash').addBatch({
       assert.lengthOf(hash.values('x'), 0);
     },
   },
-  
+
   'multihash with two single-value elements': {
     topic: function() {
       var hash = new MultiHash();
@@ -35,7 +35,7 @@ vows.describe('MultiHash').addBatch({
       hash.put('foo', 'bar');
       return hash;
     },
-    
+
     'should report length of two' : function(hash) {
       assert.equal(hash.length, 2);
     },
@@ -57,7 +57,7 @@ vows.describe('MultiHash').addBatch({
       assert.equal(hash.values('hello')[0], 'world');
     },
   },
-  
+
   'multihash with one multi-value element': {
     topic: function() {
       var hash = new MultiHash();
@@ -65,7 +65,7 @@ vows.describe('MultiHash').addBatch({
       hash.put('foo', 'baz');
       return hash;
     },
-    
+
     'should report length of one' : function(hash) {
       assert.equal(hash.length, 1);
     },
@@ -85,7 +85,7 @@ vows.describe('MultiHash').addBatch({
       assert.equal(hash.values('foo')[1], 'baz');
     },
   },
-  
+
   'multihash#add': {
     'should add objects containing different keys' : function() {
       var mh = new MultiHash();
@@ -116,7 +116,7 @@ vows.describe('MultiHash').addBatch({
       assert.equal(mh.length, 1);
     },
   },
-  
+
   'multihash#del': {
     'should delete keys' : function() {
       var mh = new MultiHash();

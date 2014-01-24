@@ -1,28 +1,40 @@
 {
-  "name": "passport-http-oauth",
-  "version": "0.1.3",
-  "description": "HTTP OAuth authentication strategy for Passport.",
-  "keywords": ["passport", "http", "oauth", "authn", "authentication", "authz", "authorization", "api"],
+  "name": "passport-http-oauth-1leg",
+  "version": "0.1.4",
+  "description": "HTTP 1-Legged OAuth authentication strategy for Passport.",
+  "keywords": [
+    "passport",
+    "http",
+    "oauth",
+    "authn",
+    "authentication",
+    "authz",
+    "authorization",
+    "api"
+  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/jaredhanson/passport-http-oauth.git"
+    "url": "git://github.com/nomoon/passport-http-oauth-1leg.git"
   },
   "bugs": {
-    "url": "http://github.com/jaredhanson/passport-http-oauth/issues"
+    "url": "http://github.com/nomoon/passport-http-oauth-1leg/issues"
   },
   "author": {
-    "name": "Jared Hanson",
-    "email": "jaredhanson@gmail.com",
-    "url": "http://www.jaredhanson.net/"
+    "name": "Tim Bellefleur (originally Jared Hanson)",
+    "email": "nomoon@phoebus.ca",
+    "url": "http://github.com/nomoon"
   },
-  "licenses": [ {
-    "type": "MIT",
-    "url": "http://www.opensource.org/licenses/MIT" 
-  } ],
-  "main": "./lib/passport-http-oauth",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "main": "./lib/passport-http-oauth-1leg",
   "dependencies": {
     "pkginfo": "0.2.x",
-    "passport": "~0.1.11"
+    "passport": "~0.1.11",
+    "vows": "~0.7.0"
   },
   "devDependencies": {
     "vows": "0.6.x"
@@ -30,5 +42,7 @@
   "scripts": {
     "test": "NODE_PATH=lib node_modules/.bin/vows test/*-test.js test/**/*-test.js"
   },
-  "engines": { "node": ">= 0.4.0" }
+  "engines": {
+    "node": ">= 0.4.0"
+  }
 }

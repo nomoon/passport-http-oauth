@@ -2,21 +2,21 @@ var vows = require('vows');
 var assert = require('assert');
 var url = require('url');
 var util = require('util');
-var TokenStrategy = require('passport-http-oauth/strategies/token');
+var TokenStrategy = require('passport-http-oauth-1leg/strategies/token');
 
 
 vows.describe('TokenStrategy').addBatch({
-  
+
   'strategy': {
     topic: function() {
       return new TokenStrategy(function() {}, function() {});
     },
-    
+
     'should be named oauth': function(strategy) {
       assert.equal(strategy.name, 'oauth');
     },
   },
-  
+
   'strategy handling a valid request with credentials in header': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -39,7 +39,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -53,7 +53,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -65,7 +65,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, user, info) {
         assert.isNull(err);
       },
@@ -81,7 +81,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a valid request with credentials with spaces in header': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -104,7 +104,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -118,7 +118,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -130,7 +130,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, user, info) {
         assert.isNull(err);
       },
@@ -146,7 +146,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a valid request with credentials in header using 1.0A version': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -170,7 +170,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -184,7 +184,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -196,7 +196,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, user, info) {
         assert.isNull(err);
       },
@@ -212,7 +212,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a valid request using host option instead of host header': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -236,7 +236,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -250,7 +250,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -262,7 +262,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, user, info) {
         assert.isNull(err);
       },
@@ -278,7 +278,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a valid request with credentials in header using PLAINTEXT signature': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -293,7 +293,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -307,7 +307,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/api/userinfo';
         req.method = 'GET';
         req.headers = {};
@@ -319,7 +319,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, user, info) {
         assert.isNull(err);
       },
@@ -358,7 +358,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -372,7 +372,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -384,7 +384,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, user, info) {
         assert.isNull(err);
       },
@@ -423,7 +423,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -437,7 +437,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -449,7 +449,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, user, info) {
         assert.isNull(err);
       },
@@ -465,11 +465,11 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   // TODO: Implement test case for request with params in body
-  
+
   // TODO: Implement test case for request with params in query
-  
+
   'strategy handling a valid request where token callback supplies info': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -484,7 +484,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -498,7 +498,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -510,7 +510,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, user, info) {
         assert.isNull(err);
       },
@@ -529,7 +529,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a valid request where timestamp and nonce are validated': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -552,7 +552,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -566,7 +566,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -578,7 +578,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, user, info) {
         assert.isNull(err);
       },
@@ -593,7 +593,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a valid request where consumer is not authenticated': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -608,7 +608,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -622,7 +622,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -634,7 +634,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, challenge, status) {
         assert.isNull(err);
       },
@@ -646,7 +646,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a valid request where user is not authenticated': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -661,7 +661,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -675,7 +675,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -687,7 +687,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, challenge, status) {
         assert.isNull(err);
       },
@@ -699,7 +699,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a valid request where timestamp and nonce are not validated': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -718,7 +718,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -732,7 +732,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -744,7 +744,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, challenge, status) {
         assert.isNull(err);
       },
@@ -756,7 +756,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a request with invalid HMAC-SHA1 signature': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -771,7 +771,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -785,7 +785,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -797,7 +797,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, challenge, status) {
         assert.isNull(err);
       },
@@ -809,7 +809,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a request with invalid PLAINTEXT signature': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -824,7 +824,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -838,7 +838,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/api/userinfo';
         req.method = 'GET';
         req.headers = {};
@@ -850,7 +850,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, challenge, status) {
         assert.isNull(err);
       },
@@ -877,7 +877,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -891,7 +891,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -903,7 +903,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, challenge, status) {
         assert.isNull(err);
       },
@@ -930,7 +930,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -944,7 +944,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -956,7 +956,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, challenge, status) {
         assert.isNull(err);
       },
@@ -968,7 +968,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a valid request where consumer callback fails with an error': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -983,7 +983,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -997,7 +997,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(null, err);
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -1009,7 +1009,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not call success or fail' : function(err, e) {
         assert.isNull(err);
       },
@@ -1019,7 +1019,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a valid request where verify callback fails with an error': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -1034,7 +1034,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -1048,7 +1048,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(null, err);
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -1060,7 +1060,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not call success or fail' : function(err, e) {
         assert.isNull(err);
       },
@@ -1070,7 +1070,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a valid request where validate callback fails with an error': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -1089,7 +1089,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -1103,7 +1103,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(null, err);
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -1115,7 +1115,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not call success or fail' : function(err, e) {
         assert.isNull(err);
       },
@@ -1125,7 +1125,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a request without authentication credentials': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -1140,7 +1140,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -1154,7 +1154,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -1165,7 +1165,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, challenge, status) {
         assert.isNull(err);
       },
@@ -1177,7 +1177,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a request without authentication credentials and realm option': {
     topic: function() {
       var strategy = new TokenStrategy({ realm: 'Foo' },
@@ -1192,7 +1192,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -1206,7 +1206,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -1217,7 +1217,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, challenge, status) {
         assert.isNull(err);
       },
@@ -1229,7 +1229,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a request with non-OAuth scheme': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -1244,7 +1244,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -1258,7 +1258,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -1270,7 +1270,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, challenge, status) {
         assert.isNull(err);
       },
@@ -1282,7 +1282,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a request with malformed-OAuth scheme': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -1297,7 +1297,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -1311,7 +1311,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -1323,7 +1323,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, challenge, status) {
         assert.isNull(err);
       },
@@ -1332,7 +1332,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a request with OAuth scheme with missing parameters': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -1347,7 +1347,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -1361,7 +1361,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -1373,7 +1373,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, challenge, status) {
         assert.isNull(err);
       },
@@ -1385,7 +1385,7 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   'strategy handling a request with OAuth scheme with bad version': {
     topic: function() {
       var strategy = new TokenStrategy(
@@ -1400,7 +1400,7 @@ vows.describe('TokenStrategy').addBatch({
       );
       return strategy;
     },
-    
+
     'after augmenting with actions': {
       topic: function(strategy) {
         var self = this;
@@ -1414,7 +1414,7 @@ vows.describe('TokenStrategy').addBatch({
         strategy.error = function(err) {
           self.callback(new Error('should not be called'));
         }
-        
+
         req.url = '/1/users/show.json?screen_name=jaredhanson&user_id=1705';
         req.method = 'GET';
         req.headers = {};
@@ -1426,7 +1426,7 @@ vows.describe('TokenStrategy').addBatch({
           strategy.authenticate(req);
         });
       },
-      
+
       'should not generate an error' : function(err, challenge, status) {
         assert.isNull(err);
       },
@@ -1438,19 +1438,19 @@ vows.describe('TokenStrategy').addBatch({
       },
     },
   },
-  
+
   // TODO: Add test case for bad request with OAuth params in multiple locations
-  
+
   'strategy constructed without a consumer callback or verify callback': {
     'should throw an error': function (strategy) {
       assert.throws(function() { new TokenStrategy() });
     },
   },
-  
+
   'strategy constructed without a verify callback': {
     'should throw an error': function (strategy) {
       assert.throws(function() { new TokenStrategy(function() {}) });
     },
   },
-  
+
 }).export(module);
