@@ -1,6 +1,6 @@
 {
   "name": "passport-http-oauth-1leg",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "HTTP 1-Legged OAuth authentication strategy for Passport.",
   "keywords": [
     "passport",
