@@ -542,7 +542,7 @@ vows.describe('TokenStrategy').addBatch({
           done(null, { username: 'bob' }, 'lips-zipped');
         },
         // validate callback
-        function(timestamp, nonce, done) {
+        function(timestamp, nonce, user, done) {
           if (timestamp == 1339004912 && nonce == 'A7E738D9A9684A60A40607017735ADAD') {
             done(null, true);
           } else {
@@ -712,7 +712,7 @@ vows.describe('TokenStrategy').addBatch({
           done(null, { username: 'bob' }, 'lips-zipped');
         },
         // validate callback
-        function(timestamp, nonce, done) {
+        function(timestamp, nonce, user, done) {
           done(null, false);
         }
       );
@@ -1083,7 +1083,7 @@ vows.describe('TokenStrategy').addBatch({
           done(null, { username: 'bob' }, 'lips-zipped');
         },
         // validate callback
-        function(timestamp, nonce, done) {
+        function(timestamp, nonce, user, done) {
           done(new Error('validate callback failure'));
         }
       );
