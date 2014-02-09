@@ -749,7 +749,7 @@ vows.describe('TokenStrategy').addBatch({
         assert.isNull(err);
       },
       'should respond with challenge' : function(err, challenge, status) {
-        assert.equal(challenge, 'OAuth realm="Users", oauth_problem="nonce_used"');
+        assert.equal(challenge, 'OAuth realm="Users", oauth_problem="nonce_timestamp_invalid"');
       },
       'should respond with default status' : function(err, challenge, status) {
         assert.isUndefined(status);
